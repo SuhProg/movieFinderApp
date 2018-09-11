@@ -9,7 +9,7 @@ $(document).ready(() => {
 
 function getMovies(searchText){
   // using axios to make requests to the api
-  axios.get('http://www.omdbapi.com/?apikey=7e5d49a7&s='+searchText)
+  axios.get('http://www.omdbapi.com/?apikey=[yourkey]&s='+searchText)
     .then((response) => {
       console.log(response);
       let movies = response.data.Search;
@@ -41,7 +41,7 @@ function movieSelected(id){
 
 function getMovie(){
   let movieId = sessionStorage.getItem('movieId');
-  axios.get('http://www.omdbapi.com/?apikey=7e5d49a7&i='+movieId)
+  axios.get('http://www.omdbapi.com/?apikey=[yourkey]&i='+movieId)
     .then((response) => {
       console.log(response);
       let movie = response.data;
