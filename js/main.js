@@ -9,17 +9,17 @@ $(document).ready(() => {
 
 function getMovies(searchText){
   // using axios to make requests to the api
-  axios.get('http://www.omdbapi.com/?apikey=[yourkey]&s='+searchText)
+  axios.get('http://www.omdbapi.com/?apikey=7e5d49a7&s='+searchText)
     .then((response) => {
       console.log(response);
       let movies = response.data.Search;
       let output = '';
       $.each(movies, (index, movie) => {
         output += `
-          <div class="col-md-3">
-            <div class="well text-center">
-              <img src="${movie.Poster}">
+          <div class="col-md-3 my-movie">
+            <div class="well">
               <h5>${movie.Title}</h5>
+              <img src="${movie.Poster}">
               <a onclick="movieSelected('${movie.imdbID}')" class="btn btn-primary" href="#">More Details</a>
             </div>
           </div>
@@ -41,7 +41,7 @@ function movieSelected(id){
 
 function getMovie(){
   let movieId = sessionStorage.getItem('movieId');
-  axios.get('http://www.omdbapi.com/?apikey=[yourkey]&i='+movieId)
+  axios.get('http://www.omdbapi.com/?apikey=7e5d49a7&i='+movieId)
     .then((response) => {
       console.log(response);
       let movie = response.data;
@@ -63,15 +63,19 @@ function getMovie(){
             </ul>
           </div>
         </div>
+        <br />
         <div class="row">
-          <div class="well">
-            <h3>Plot:</h3>
-            ${movie.Plot}
-            <hr>
-            <a href="https://www.imdb.com/title/${movie.imdbID}" target="_blank" class="btn btn-primary">View IMDB</a>
-            <a href="index.html" class="btn btn-default">Go back to search</a
+          <div class="col-md-11">
+            <div class="well">
+              <h3>Plot:</h3>
+              ${movie.Plot}
+              <hr>
+              <a href="https://www.imdb.com/title/${movie.imdbID}" target="_blank" class="btn btn-primary">View IMDB</a>
+              <a href="index.html" class="btn btn-default">Go back to search</a>
+            </div>
           </div>
         </div>
+        <br />
       `
       $('#movie').html(output);
     })
