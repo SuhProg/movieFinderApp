@@ -18,19 +18,26 @@
 
 @media only screen and (min-width:992px){
   #movies .col-md-3 .well {
-    height: 420px;
+    height: auto;
   }
   #movies .col-md-3 img {
-    height: 320px;
+    height: 345px;
   }
 
   .my-movie{
     background-color: #ECF0F1;
     margin: 2.5px 0;
     border-radius: 2.5px;
-    padding: 5px;
+    padding: 10px 0;
     text-align: center;
   }
-  
 
+  .movie-title{
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 90%;
+  }
+  
 }

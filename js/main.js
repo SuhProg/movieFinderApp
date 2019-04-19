@@ -15,22 +15,23 @@ function getMovies(searchText){
       let movies = response.data.Search;
       let output = '';
       $.each(movies, (index, movie) => {
+        
         output += `
           <div class="col-md-3 my-movie">
             <div class="well">
-              <h5>${movie.Title}</h5>
-              <img src="${movie.Poster}">
+              <h5><strong class="movie-title" data-toggle="tooltip" data-placement="right" title="${movie.Title}">${movie.Title}</strong></h5><hr />
+              <img class="thumbnail" src="${movie.Poster}">
               <a onclick="movieSelected('${movie.imdbID}')" class="btn btn-primary" href="#">More Details</a>
             </div>
           </div>
         `;
       });
-
       $('#movies').html(output);
     })
     .catch((err) => {
       console.log(err);
     });
+    
 }
 
 function movieSelected(id){
@@ -77,6 +78,9 @@ function getMovie(){
         </div>
         <br />
       `
+      //check for images
+      $('.thumbnail').attr('src','img/404.jpg');
+
       $('#movie').html(output);
     })
     .catch((err) => {
