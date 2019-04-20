@@ -7,6 +7,16 @@ $(document).ready(() => {
   });
 });
 
+
+// $('#searchForm').on('input', (e) => { 
+//   var arr = $(this).val() // get the current value of the input field.
+//   axios.get('https://www.omdbapi.com/?apikey=7e5d49a7&s='+arr)
+//     .then((response) =>{
+//       getMovies(response);
+//     });
+// });
+
+
 function getMovies(searchText){
   // using axios to make requests to the api
   axios.get('https://www.omdbapi.com/?apikey=7e5d49a7&s='+searchText)
@@ -15,7 +25,9 @@ function getMovies(searchText){
       let movies = response.data.Search;
       let output = '';
       $.each(movies, (index, movie) => {
-        
+        if(movie.Poster == 'N/A'){
+          movie.Poster = 'img/404.jpg';
+        }
         output += `
           <div class="col-md-3 my-movie">
             <div class="well">
